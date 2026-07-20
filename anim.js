@@ -511,7 +511,7 @@
 
         // Images
         const darkImage = 'image/me5.png';
-        const lightImage = 'image/dragon.jpg';
+        const lightImage = 'image/me9.png';
 
         // Vérifier si un thème est sauvegardé
         const savedTheme = localStorage.getItem('theme');
@@ -597,6 +597,338 @@
 
     console.log('✅ Portfolio chargé avec succès !');
     console.log('🚀 Mode sombre, compteur de visites et loader hacker activés !');
-    console.log('🖼️ Changement de photo : me5.png ↔ dragon.jpg');
+  
 
+})();
+
+
+// ============================================
+// CURSEUR ÉTOILE FILANTE (TRAÎNÉE LUMINEUSE)
+// ============================================
+(function() {
+    const canvas = document.createElement('canvas');
+    canvas.id = 'cursorCanvas';
+    canvas.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9998;
+    `;
+    document.body.appendChild(canvas);
+
+    const ctx = canvas.getContext('2d');
+    let w, h;
+
+    function resizeCanvas() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    let mouseX = 0, mouseY = 0;
+    let trail = [];
+    const TRAIL_LENGTH = 25; // Longueur de la traînée
+
+    // Suivre la souris
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    // Cacher le curseur par défaut sur tout le site
+    document.body.style.cursor = 'none';
+    
+    // Mais garder le curseur sur les champs de formulaire
+    document.querySelectorAll('input, textarea, select').forEach(el => {
+        el.style.cursor = 'text';
+    });
+
+    // Animation
+    function animate() {
+        // Ajouter la position actuelle à la traînée
+        trail.push({ x: mouseX, y: mouseY, life: 1 });
+
+        // Limiter la longueur de la traînée
+        if (trail.length > TRAIL_LENGTH) {
+            trail.shift();
+        }
+
+        // Effacer le canvas
+        ctx.clearRect(0, 0, w, h);
+
+        // Dessiner la traînée
+        for (let i = 0; i < trail.length; i++) {
+            const p = trail[i];
+            const progress = i / trail.length;
+            const alpha = progress * 0.8;
+            const size = progress * 12 + 2;
+
+            // Couleur : dégradé violet → blanc → bleu
+            const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, size);
+            if (progress > 0.7) {
+                gradient.addColorStop(0, `rgba(255, 255, 255, ${alpha * 0.9})`);
+                gradient.addColorStop(0.5, `rgba(200, 180, 255, ${alpha * 0.5})`);
+                gradient.addColorStop(1, `rgba(108, 99, 255, 0)`);
+            } else {
+                gradient.addColorStop(0, `rgba(180, 170, 255, ${alpha * 0.8})`);
+                gradient.addColorStop(0.5, `rgba(108, 99, 255, ${alpha * 0.6})`);
+                gradient.addColorStop(1, `rgba(108, 99, 255, 0)`);
+            }
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
+            ctx.fillStyle = gradient;
+            ctx.fill();
+
+            // Petit cœur brillant au centre
+            if (i === trail.length - 1) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${0.6 + Math.random() * 0.4})`;
+                ctx.shadowColor = 'rgba(200, 180, 255, 0.8)';
+                ctx.shadowBlur = 20;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        // Réduire la vie des points trop vieux
+        for (let i = trail.length - 1; i >= 0; i--) {
+            trail[i].life -= 0.02;
+            if (trail[i].life <= 0) {
+                trail.splice(i, 1);
+            }
+        }
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    // Cacher quand on quitte la fenêtre
+    document.addEventListener('mouseleave', () => {
+        trail = [];
+        ctx.clearRect(0, 0, w, h);
+    });
+
+    // Empêcher le canvas de bloquer les clics
+    canvas.style.pointerEvents = 'none';
+
+    console.log('✨ Curseur étoile filante activé !');
+})();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ============================================
+// BARRE DE PROGRESSION AVEC EFFET FUMÉE COLORÉE
+// ============================================
+(function() {
+    const progressBar = document.getElementById('scrollProgressBar');
+    if (!progressBar) return;
+
+    // Créer un canvas pour l'effet de fumée
+    const canvas = document.createElement('canvas');
+    canvas.id = 'smokeCanvas';
+    canvas.style.cssText = `
+        position: fixed;
+        top: 0;
+        right: 0;
+        pointer-events: none;
+        z-index: 998;
+        width: 100px;
+        height: 100vh;
+    `;
+    document.body.appendChild(canvas);
+
+    const ctx = canvas.getContext('2d');
+    let w = 100, h = window.innerHeight;
+    canvas.width = w;
+    canvas.height = h;
+
+    // Redimensionner le canvas
+    window.addEventListener('resize', () => {
+        h = canvas.height = window.innerHeight;
+        canvas.width = 100;
+        w = 100;
+    });
+
+    // Particules de fumée
+    let particles = [];
+    const MAX_PARTICLES = 30;
+
+    class SmokeParticle {
+        constructor(y, color) {
+            this.x = 100;
+            this.y = y;
+            this.size = Math.random() * 20 + 10;
+            this.speedX = -(Math.random() * 0.8 + 0.2);
+            this.speedY = (Math.random() - 0.5) * 0.3;
+            this.opacity = 0.6 + Math.random() * 0.3;
+            this.color = color;
+            this.life = 1;
+            this.decay = 0.005 + Math.random() * 0.008;
+            this.rotation = Math.random() * Math.PI * 2;
+            this.rotationSpeed = (Math.random() - 0.5) * 0.02;
+            this.wobble = Math.random() * 100;
+            this.wobbleSpeed = 0.02 + Math.random() * 0.03;
+        }
+
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY + Math.sin(this.wobble) * 0.1;
+            this.wobble += this.wobbleSpeed;
+            this.size += 0.1;
+            this.opacity *= 0.995;
+            this.life -= this.decay;
+            this.rotation += this.rotationSpeed;
+            return this.life > 0 && this.opacity > 0.01;
+        }
+
+        draw(ctx) {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.rotation);
+            ctx.globalAlpha = this.opacity * this.life;
+
+            const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, this.size);
+            gradient.addColorStop(0, this.color);
+            gradient.addColorStop(0.3, this.color + '80');
+            gradient.addColorStop(0.7, this.color + '40');
+            gradient.addColorStop(1, 'transparent');
+
+            ctx.beginPath();
+            ctx.arc(0, 0, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = gradient;
+            ctx.fill();
+
+            // Effet de flou en bordure
+            ctx.shadowColor = this.color + '60';
+            ctx.shadowBlur = 30;
+            ctx.fill();
+
+            ctx.restore();
+        }
+    }
+
+    // Palette de couleurs magiques
+    const colors = [
+        '#6c63ff', // Violet
+        '#b388ff', // Violet clair
+        '#82b1ff', // Bleu
+        '#00e5ff', // Cyan
+        '#00ff41', // Vert
+        '#ffd93d', // Jaune
+        '#ff6b6b', // Rouge
+        '#fd79a8', // Rose
+        '#a29bfe', // Lavande
+        '#00cec9', // Turquoise
+        '#fdcb6e', // Or
+        '#e17055', // Corail
+    ];
+
+    function getRandomColor() {
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    let lastScrollY = 0;
+    let isScrolling = false;
+    let scrollTimeout;
+
+    function updateScrollProgress() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        
+        if (docHeight > 0) {
+            const progress = (scrollTop / docHeight) * 100;
+            progressBar.style.height = progress + '%';
+            
+            // Créer des particules de fumée pendant le scroll
+            if (isScrolling && progress > 0) {
+                const intensity = Math.abs(scrollTop - lastScrollY);
+                const count = Math.min(Math.floor(intensity / 5) + 1, 3);
+                
+                for (let i = 0; i < count; i++) {
+                    const y = (scrollTop / docHeight) * h;
+                    const color = getRandomColor();
+                    particles.push(new SmokeParticle(y, color));
+                    
+                    // Limiter le nombre de particules
+                    if (particles.length > MAX_PARTICLES) {
+                        particles.shift();
+                    }
+                }
+            }
+        }
+        lastScrollY = scrollTop;
+    }
+
+    // Détecter le défilement
+    window.addEventListener('scroll', () => {
+        isScrolling = true;
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            isScrolling = false;
+        }, 100);
+        updateScrollProgress();
+    });
+
+    window.addEventListener('resize', updateScrollProgress);
+    window.addEventListener('load', updateScrollProgress);
+
+    // Animation des particules
+    function animateSmoke() {
+        ctx.clearRect(0, 0, w, h);
+
+        // Mettre à jour et dessiner les particules
+        particles = particles.filter(p => p.update());
+        particles.forEach(p => p.draw(ctx));
+
+        requestAnimationFrame(animateSmoke);
+    }
+
+    animateSmoke();
+
+    // Apparition/disparition de la barre
+    const scrollProgress = document.querySelector('.scroll-progress');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.scrollY;
+        if (currentScroll > 50) {
+            scrollProgress.style.opacity = '1';
+        } else {
+            scrollProgress.style.opacity = '0.3';
+        }
+        lastScroll = currentScroll;
+    });
+
+    // Initialisation
+    updateScrollProgress();
+    scrollProgress.style.opacity = '0.3';
+
+    console.log('🌈 Barre de progression avec effet fumée colorée activée !');
 })();
