@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MIARINDRANTO Diarizo · Full-Stack</title>
+
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+    <!-- ==========================================
+    LOADER HACKER STYLE
+    ========================================== -->
+    <div id="loader">
+        <div class="loader-container">
+            <div class="loader-text">▸ Initialisation...</div>
+            <div class="loader-bar-container">
+                <div class="loader-bar" id="loaderBar"></div>
+            </div>
+            <div class="loader-percent" id="loaderPercent">0%</div>
+            <div class="loader-matrix" id="loaderMatrix">
+                01001000 01100101 01101100 01101100 01101111 00100000 01010111 01101111 01110010 01101100 01100100
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+    CANVAS HACKER (ARRIÈRE-PLAN)
+    ========================================== -->
+    <canvas id="hackerCanvas"></canvas>
+
+    <!-- ==========================================
+    HEADER
+    ========================================== -->
+    <header class="header" id="header">
+        <a href="#" class="logo"><i class="fas fa-code"></i>Diarizo<span>.</span></a>
+
+        <div class="header-controls">
+            <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+        </div>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#hero" class="active">Accueil</a></li>
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#projets">Projets</a></li>
+            <li><a href="#competences">Compétences</a></li>
+            <li><a href="#contact" class="nav-cta">Contact</a></li>
+        </ul>
+    </header>
+
+    <!-- ==========================================
+    HERO - PHOTO FIXE
+    ========================================== -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1>
+                MIARINDRANTO<br />
+                <span class="highlight">Diarizo Alinjaka</span>
+            </h1>
+            <p class="hero-subtitle"><i class="fas fa-code"></i> Développeur Full-Stack · Réseaux · Cybersécurité</p>
+            <div class="hero-badges">
+                <span class="hero-badge"><i class="fas fa-graduation-cap"></i> L2 Informatique</span>
+                <span class="hero-badge"><i class="fas fa-server"></i> Full-Stack</span>
+                <span class="hero-badge"><i class="fas fa-network-wired"></i> Réseaux</span>
+                <span class="hero-badge"><i class="fas fa-lock"></i> Cybersécurité</span>
+            </div>
+            <div class="hero-actions">
+                <a href="#projets" class="btn btn-primary"><i class="fas fa-rocket"></i> Voir mes projets</a>
+                <a href="docs/myCV.pdf" class="btn btn-cv" download><i class="fas fa-file-pdf"></i> Télécharger mon CV</a>
+                <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Me contacter</a>
+            </div>
+
+            <div class="typewriter-container">
+                <span class="typewriter-label">⚡ Je suis</span>
+                <span class="typewriter-text" id="typewriter-text"></span>
+                <span class="cursor"></span>
+            </div>
+
+            <!-- ===== STATISTIQUES (COMPTEUR DE VISITES) ===== -->
+            <div class="stats-container">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="5">0</span>
+                    <span class="stat-label">Projets réalisés</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="8">0</span>
+                    <span class="stat-label">Technologies maîtrisées</span>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- UNE SEULE IMAGE FIXE AVEC ID POUR CHANGEMENT -->
+        <div class="hero-background">
+            <img id="profileImage" src="image/me5.png" alt="MIARINDRANTO Diarizo Alinjaka" />
+            <div class="hero-overlay"></div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    À PROPOS - CARROUSEL AUTO SANS BOUTONS
+    ========================================== -->
+    <section class="about-section" id="about">
+        <div class="about-grid">
+            <div class="about-image">
+                <div class="about-slider" id="aboutSlider"></div>
+                <div class="about-badge">
+                    <i class="fas fa-camera"></i> Mes moments
+                </div>
+            </div>
+            <div class="about-text">
+                <h2>À propos de <span>moi</span></h2>
+                <p class="about-subtitle"><i class="fas fa-quote-left"></i> Codeur, rêveur, bâtisseur de solutions</p>
+
+                <p>
+                    <i class="fas fa-chevron-right"></i>
+                    Akory aby eee! 👋 je suis <strong>MIARINDRANTO Diarizo Alinjaka</strong>, étudiant en <strong>Licence 2 Informatique</strong> à l'EMIT Fianarantsoa. Passionné par le développement web, les réseaux et la cybersécurité, je transforme les idées en solutions digitales innovantes.
+                </p>
+
+                <p>
+                    <i class="fas fa-chevron-right"></i>
+                    Mon parcours m'a permis d'acquérir une solide base en <strong>Full-Stack</strong> (HTML5, CSS3, JavaScript, PHP, Node.js, Express) ainsi qu'en <strong>bases de données</strong> (MySQL, PostgreSQL, SQLite3). Curieux et autodidacte, j'explore constamment les nouvelles technologies.
+                </p>
+
+                <p>
+                    <i class="fas fa-chevron-right"></i>
+                    Passionné par la <strong>sécurité informatique</strong>, je m'intéresse particulièrement aux <strong>réseaux</strong> (OSI, TCP/IP, Subnetting) et à la <strong>simulation réseau</strong> avec Cisco Packet Tracer. Mon objectif : allier performance technique et design intuitif.
+                </p>
+
+                <div class="about-tags">
+                    <span class="about-tag"><i class="fas fa-code"></i> Full-Stack</span>
+                    <span class="about-tag"><i class="fas fa-network-wired"></i> Réseaux</span>
+                    <span class="about-tag"><i class="fas fa-lock"></i> Cybersécurité</span>
+                    <span class="about-tag"><i class="fas fa-database"></i> Base de données</span>
+                    <span class="about-tag"><i class="fas fa-terminal"></i> Linux</span>
+                    <span class="about-tag"><i class="fas fa-robot"></i> IA & Automatisation</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    PROJETS
+    ========================================== -->
+    <section class="section" id="projets">
+        <div class="section-header">
+            <h2 class="section-title"><i class="fas fa-project-diagram"></i> Mes Projets</h2>
+            <span style="color:var(--gray);font-size:clamp(0.7rem, 0.85vw, 0.85rem);"><i class="fas fa-arrow-left" style="margin-right:8px;"></i>3 projets par slide<i class="fas fa-arrow-right" style="margin-left:8px;"></i></span>
+        </div>
+        <div class="carousel-wrapper">
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-slide"><div class="project-card"><div class="project-icon"><i class="fas fa-hotel"></i></div><h3>Hotel Savoureux</h3><p>Site web de réservation d'hôtel avec gestion des chambres, clients et réservations en ligne.</p><div class="project-tags"><span class="project-tag">PHP</span><span class="project-tag">MySQL</span></div><a href="#" class="project-link" target="_blank">Voir le projet <i class="fas fa-arrow-right"></i></a></div></div>
+                    <div class="carousel-slide"><div class="project-card"><div class="project-icon"><i class="fas fa-solar-panel"></i></div><h3>Gestion vente panneaux solaires</h3><p>Application desktop de gestion de vente et de stock développée en C# avec base de données SQLite.</p><div class="project-tags"><span class="project-tag">C#</span><span class="project-tag">SQLite</span><span class="project-tag">WinForms</span></div><a href="#" class="project-link" target="_blank">Voir le projet <i class="fas fa-arrow-right"></i></a></div></div>
+                    <div class="carousel-slide"><div class="project-card"><div class="project-icon"><i class="fas fa-user-circle"></i></div><h3>Site Web Personnel</h3><p>Site responsive développé en HTML, CSS et JavaScript avec animations et design minimaliste.</p><div class="project-tags"><span class="project-tag">HTML5</span><span class="project-tag">CSS3</span><span class="project-tag">JavaScript</span></div><a href="#" class="project-link" target="_blank">Voir le projet <i class="fas fa-arrow-right"></i></a></div></div>
+                    <div class="carousel-slide"><div class="project-card"><div class="project-icon"><i class="fas fa-dice"></i></div><h3>Jeu de l'Oie (Python)</h3><p>Jeu de plateau interactif avec interface graphique Tkinter, multijoueur local et règles personnalisées.</p><div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Tkinter</span><span class="project-tag">POO</span></div><a href="#" class="project-link" target="_blank">Voir le projet <i class="fas fa-arrow-right"></i></a></div></div>
+                    <div class="carousel-slide"><div class="project-card"><div class="project-icon"><i class="fas fa-network-wired"></i></div><h3>Simulation Réseau - Cisco</h3><p>Configuration de réseau d'entreprise avec VLAN, subnets, routage statique et dynamique sur Packet Tracer.</p><div class="project-tags"><span class="project-tag">Cisco PT</span><span class="project-tag">VLAN</span><span class="project-tag">Routage</span></div><a href="#" class="project-link" target="_blank">Voir le projet <i class="fas fa-arrow-right"></i></a></div></div>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="carousel-controls">
+            <button class="carousel-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+            <div class="carousel-dots" id="carouselDots"></div>
+            <button class="carousel-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    COMPÉTENCES
+    ========================================== -->
+    <section class="section" id="competences" style="padding-top:0;">
+        <h2 class="section-title"><i class="fas fa-cogs"></i> Compétences</h2>
+        <div class="skills-grid">
+            <div class="skill-category"><h4><i class="fas fa-globe"></i> Développement Web</h4><ul><li><strong>Frontend :</strong> HTML5, CSS3, JavaScript</li><li><strong>Backend :</strong> PHP, Node.js</li><li><strong>Frameworks :</strong> Express</li></ul></div>
+            <div class="skill-category"><h4><i class="fas fa-database"></i> Bases de données</h4><ul><li><strong>SQL :</strong> MySQL, PostgreSQL, SQLite3</li><li><strong>Modélisation :</strong> MERISE, UML</li></ul></div>
+            <div class="skill-category"><h4><i class="fas fa-terminal"></i> Programmation</h4><ul><li><strong>Langages :</strong> Python, C, C#</li><li><strong>Paradigmes :</strong> POO, Procédural</li><li><strong>Outils :</strong> Git, GitHub, VS Code</li></ul></div>
+            <div class="skill-category"><h4><i class="fas fa-network-wired"></i> Réseaux & Sécurité</h4><ul><li><strong>Modèles :</strong> OSI, TCP/IP</li><li><strong>Adressage :</strong> IPv4, Subnetting (VLSM)</li><li><strong>Équipements :</strong> Routeurs, Switches</li><li><strong>Simulation :</strong> Cisco Packet Tracer</li></ul></div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    CONTACT
+    ========================================== -->
+    <section class="contact-section" id="contact">
+        <div class="contact-inner">
+            <div class="contact-info">
+                <h2><i class="fas fa-paper-plane"></i> Restons en contact</h2>
+                <p>Vous avez un projet, une opportunité de stage ou juste envie de discuter ? N'hésitez pas !</p>
+                <div class="contact-item"><i class="fas fa-phone-alt"></i><span>038 11 697 75</span></div>
+                <div class="contact-item"><i class="fas fa-envelope"></i><a href="mailto:miarindrantodiarizoalinjaka@gmail.com">miarindrantodiarizoalinjaka@gmail.com</a></div>
+                <div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>Antananarivo, Madagascar</span></div>
+                <div class="social-links">
+                    <a href="https://github.com/dairybradlee-star"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/diarizo-alin-484a4241b/"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61570984782728"><i class="fab fa-facebook"></i></a>
+                    <a href="https://wa.me/261381169775"><i class="fab fa-whatsapp"></i></a>
+                </div>
+
+                <div class="contact-photo-wrapper">
+                    <img src="image/contact2.jpg" alt="Contact" />
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h3><i class="fas fa-envelope"></i> Envoyez-moi un message</h3>
+                <form id="contactForm">
+                    <div class="form-group"><label for="name">Votre nom</label><input type="text" id="name" placeholder="Jean Dupont" required /></div>
+                    <div class="form-group"><label for="email">Votre email</label><input type="email" id="email" placeholder="jean@email.com" required /></div>
+                    <div class="form-group"><label for="message">Message</label><textarea id="message" placeholder="Votre message ici..." required></textarea></div>
+                    <div class="form-group"><button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Envoyer</button></div>
+                    <div class="form-success" id="formSuccess"><i class="fas fa-check-circle"></i> Votre message a été envoyé !</div>
+                </form>
+            </div>
+
+            <!-- VAGUE DOMINO -->
+            <div class="logo-wave">
+                <div class="logo-wave-title">
+                    <i class="fas fa-code"></i> technologies & outils <i class="fas fa-cogs"></i>
+                </div>
+                <div class="logo-wave-container">
+                    <div class="logo-wave-item"><i class="fab fa-html5 logo-icon"></i><span class="logo-label">HTML5</span></div>
+                    <div class="logo-wave-item"><i class="fab fa-css3-alt logo-icon"></i><span class="logo-label">CSS3</span></div>
+                    <div class="logo-wave-item"><i class="fab fa-js logo-icon"></i><span class="logo-label">JS</span></div>
+                    <div class="logo-wave-item"><i class="fab fa-php logo-icon"></i><span class="logo-label">PHP</span></div>
+                    <div class="logo-wave-item"><i class="fab fa-node-js logo-icon"></i><span class="logo-label">Node.js</span></div>
+                    <div class="logo-wave-item"><i class="fas fa-code logo-icon"></i><span class="logo-label">Express</span></div>
+                    <div class="logo-wave-item"><i class="fab fa-linux logo-icon"></i><span class="logo-label">Linux</span></div>
+                    <div class="logo-wave-item"><i class="fab fa-windows logo-icon"></i><span class="logo-label">Windows</span></div>
+                    <div class="logo-wave-item"><i class="fas fa-dragon logo-icon"></i><span class="logo-label">Kali</span></div>
+                    <div class="logo-wave-item"><i class="fas fa-shield-alt logo-icon"></i><span class="logo-label">Malware</span></div>
+                    <div class="logo-wave-item"><i class="fas fa-user-secret logo-icon"></i><span class="logo-label">Spyware</span></div>
+                    <div class="logo-wave-item"><i class="fas fa-skull logo-icon"></i><span class="logo-label">Trojan</span></div>
+                    <div class="logo-wave-item"><i class="fas fa-network-wired logo-icon"></i><span class="logo-label">Cisco</span></div>
+                    <div class="logo-wave-item"><i class="fas fa-server logo-icon"></i><span class="logo-label">Packet Tracer</span></div>
+                    <div class="logo-wave-item"><i class="fas fa-database logo-icon"></i><span class="logo-label">SQL</span></div>
+                    <div class="logo-wave-item"><i class="fab fa-git-alt logo-icon"></i><span class="logo-label">Git</span></div>
+                    <div class="logo-wave-item"><i class="fab fa-github logo-icon"></i><span class="logo-label">GitHub</span></div>
+                    <div class="logo-wave-item"><i class="fas fa-terminal logo-icon"></i><span class="logo-label">Terminal</span></div>
+                    <div class="logo-wave-item"><i class="fas fa-envelope logo-icon"></i><span class="logo-label">Contact</span></div>
+                    <!-- DUPLICATION -->
+                    <div class="logo-wave-item"><i class="fab fa-html5 logo-icon"></i><span class="logo-label">HTML5</span></div>
+                    <div class="logo-wave-item"><i class="fab fa-css3-alt logo-icon"></i><span class="logo-label">CSS3</span></div>
+                    <div class="logo-wave-item"><i class="fab fa-js logo-icon"></i><span class="logo-label">JS</span></div>
+                    <div class="logo-wave-item"><i class="fab fa-php logo-icon"></i><span class="logo-label">PHP</span></div>
+                    <div class="logo-wave-item"><i class="fab fa-node-js logo-icon"></i><span class="logo-label">Node.js</span></div>
+                    <div class="logo-wave-item"><i class="fas fa-code logo-icon"></i><span class="logo-label">Express</span></div>
+                    <div class="logo-wave-item"><i class="fab fa-linux logo-icon"></i><span class="logo-label">Linux</span></div>
+                    <div class="logo-wave-item"><i class="fab fa-windows logo-icon"></i><span class="logo-label">Windows</span></div>
+                    <div class="logo-wave-item"><i class="fas fa-dragon logo-icon"></i><span class="logo-label">Kali</span></div>
+                    <div class="logo-wave-item"><i class="fas fa-shield-alt logo-icon"></i><span class="logo-label">Malware</span></div>
+                    <div class="logo-wave-item"><i class="fas fa-user-secret logo-icon"></i><span class="logo-label">Spyware</span></div>
+                    <div class="logo-wave-item"><i class="fas fa-skull logo-icon"></i><span class="logo-label">Trojan</span></div>
+                    <div class="logo-wave-item"><i class="fas fa-network-wired logo-icon"></i><span class="logo-label">Cisco</span></div>
+                    <div class="logo-wave-item"><i class="fas fa-server logo-icon"></i><span class="logo-label">Packet Tracer</span></div>
+                    <div class="logo-wave-item"><i class="fas fa-database logo-icon"></i><span class="logo-label">SQL</span></div>
+                    <div class="logo-wave-item"><i class="fab fa-git-alt logo-icon"></i><span class="logo-label">Git</span></div>
+                    <div class="logo-wave-item"><i class="fab fa-github logo-icon"></i><span class="logo-label">GitHub</span></div>
+                    <div class="logo-wave-item"><i class="fas fa-terminal logo-icon"></i><span class="logo-label">Terminal</span></div>
+                    <div class="logo-wave-item"><i class="fas fa-envelope logo-icon"></i><span class="logo-label">Contact</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">&copy; 2026 MIARINDRANTO Diarizo Alinjaka · Tous droits réservés</div>
+    </section>
+
+    <!-- ==========================================
+    JAVASCRIPT
+    ========================================== -->
+    <script src="anim.js"></script>
+
+</body>
+</html>

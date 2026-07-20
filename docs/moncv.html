@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - MIARINDRANTO Diarizo Alinjaka</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        @font-face { font-family: mine; src: url("12.ttf"); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: mine, 'Segoe UI', Tahoma, sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 15px;
+        }
+
+        .cv {
+            max-width: 1000px;
+            width: 100%;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+            display: grid;
+            grid-template-columns: 280px 1fr;
+        }
+
+        /* ===== SIDEBAR GAUCHE ===== */
+        .sidebar {
+            background: #f8fafc;
+            padding: 30px 22px;
+            border-right: 1px solid #e2e8f0;
+        }
+
+        /* ===== PHOTO ===== */
+        .photo-container {
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        .pdp {
+            width: 160px;
+            height: 220px;
+            border-radius: 12px;
+            border: none;
+            object-fit: cover;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ===== NOM ===== */
+        .nom {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .nom h1 {
+            font-size: 1.4rem;
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        .nom h1 span {
+            color: #3b82f6;
+        }
+
+        .nom .titre {
+            color: #475569;
+            font-size: 0.8rem;
+            margin-top: 4px;
+        }
+
+        .nom .stage-badge {
+            display: inline-block;
+            margin-top: 6px;
+            background: #0f172a;
+            color: white;
+            padding: 3px 14px;
+            border-radius: 30px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-side {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .contact-side p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 4px 0;
+            font-size: 0.78rem;
+            color: #334155;
+        }
+
+        .contact-side p a {
+            color: #334155;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-side p a:hover {
+            color: #3b82f6;
+        }
+
+        .contact-side .icon {
+            width: 18px;
+            text-align: center;
+            color: #0f172a;
+        }
+
+        /* ===== SECTIONS SIDEBAR ===== */
+        .section-side {
+            margin-top: 18px;
+        }
+
+        .section-side h2 {
+            color: #0f172a;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 6px;
+            margin-bottom: 10px;
+        }
+
+        .skill-list-side {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .skill-list-side li {
+            padding: 3px 0 3px 18px;
+            position: relative;
+            font-size: 0.76rem;
+            color: #1e293b;
+            line-height: 1.4;
+        }
+
+        .skill-list-side li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .sub-skill-title {
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 8px;
+            margin-bottom: 3px;
+            padding-left: 2px;
+        }
+
+        .sub-skill-title:first-of-type {
+            margin-top: 0;
+        }
+
+        .qualites-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .qualites-list li {
+            padding: 3px 0 3px 20px;
+            position: relative;
+            font-size: 0.76rem;
+            color: #1e293b;
+            line-height: 1.4;
+        }
+
+        .qualites-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #22c55e;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        /* ===== LANGUES (tabilao) ===== */
+        .langue-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.76rem;
+        }
+
+        .langue-table td {
+            padding: 4px 0;
+            border-bottom: 1px dashed #e2e8f0;
+            color: #334155;
+        }
+
+        .langue-table td:first-child {
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .langue-table td:last-child {
+            text-align: right;
+            color: #475569;
+        }
+
+        /* ===== CONTENU DROITE ===== */
+        .content {
+            padding: 30px 35px 28px 30px;
+            background: white;
+        }
+
+        .content h2 {
+            color: #0f172a;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 6px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .content h2 .icon {
+            color: #3b82f6;
+            font-size: 0.85rem;
+            width: 22px;
+            text-align: center;
+        }
+
+        .profile-text {
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+
+        .study-item {
+            margin-bottom: 14px;
+        }
+
+        .study-item .year {
+            display: inline-block;
+            background: #e2e8f0;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 0.62rem;
+            font-weight: 600;
+            color: #0f172a;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+        }
+
+        .study-item h3 {
+            font-size: 0.88rem;
+            color: #0f172a;
+            margin: 2px 0 1px;
+        }
+
+        .study-item .place {
+            font-size: 0.75rem;
+            color: #475569;
+        }
+
+        .tools-item {
+            margin-bottom: 12px;
+        }
+
+        .tools-item h3 {
+            font-size: 0.88rem;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tools-item h3 .icon {
+            color: #3b82f6;
+            font-size: 0.9rem;
+        }
+
+        .tools-item p {
+            font-size: 0.82rem;
+            color: #475569;
+            margin-top: 2px;
+            padding-left: 30px;
+        }
+
+        .tools-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 4px;
+        }
+
+        .tools-list li {
+            padding: 3px 0 3px 18px;
+            position: relative;
+            font-size: 0.82rem;
+            color: #1e293b;
+            line-height: 1.4;
+        }
+
+        .tools-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .tools-list li strong {
+            color: #0f172a;
+        }
+
+        .projets-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 4px;
+        }
+
+        .projets-list li {
+            padding: 4px 0 4px 18px;
+            position: relative;
+            font-size: 0.82rem;
+            color: #1e293b;
+            line-height: 1.4;
+        }
+
+        .projets-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .projets-list li strong {
+            color: #0f172a;
+        }
+
+        .projets-list li .projet-desc {
+            color: #475569;
+            font-size: 0.75rem;
+            display: block;
+            margin-top: 2px;
+            padding-left: 4px;
+        }
+
+        .reseau-item {
+            margin-bottom: 12px;
+        }
+
+        .reseau-item h4 {
+            font-size: 0.82rem;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .reseau-item h4 .icon {
+            color: #3b82f6;
+            font-size: 0.8rem;
+        }
+
+        .reseau-item p {
+            font-size: 0.75rem;
+            color: #475569;
+            margin-left: 26px;
+        }
+
+        /* ===== CENTRES D'INTÉRÊT + QR CODE ===== */
+        .interets-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-top: 4px;
+        }
+
+        .interets {
+            list-style: none;
+            padding-left: 0;
+            flex: 1;
+        }
+
+        .interets li {
+            padding: 4px 0 4px 22px;
+            position: relative;
+            font-size: 0.8rem;
+            color: #1e293b;
+            line-height: 1.4;
+        }
+
+        .interets li::before {
+            content: "•";
+            position: absolute;
+            left: 2px;
+            color: #3b82f6;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .interets li .icon {
+            margin-right: 6px;
+            color: #3b82f6;
+        }
+
+        .qr-container-right {
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .qr-label-right {
+            font-size: 0.55rem;
+            color: #64748b;
+            letter-spacing: 0.3px;
+            margin-bottom: 3px;
+        }
+
+        .qr-code-right {
+            width: 120px;
+            height: 120px;
+            border-radius: 6px;
+            transition: transform 0.3s ease;
+        }
+
+        .qr-code-right:hover {
+            transform: scale(1.05);
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 850px) {
+            .cv { grid-template-columns: 1fr; }
+            .sidebar { border-right: none; border-bottom: 1px solid #e2e8f0; padding: 20px 16px; }
+            .content { padding: 22px 18px; }
+            .pdp { width: 130px; height: 180px; }
+            .nom h1 { font-size: 1.2rem; }
+            .interets-wrapper {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            .qr-container-right {
+                align-self: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body { padding: 10px 6px; }
+            .sidebar { padding: 14px 10px; }
+            .content { padding: 16px 12px; }
+            .pdp { width: 100px; height: 140px; }
+            .nom h1 { font-size: 1rem; }
+            .contact-side p { font-size: 0.65rem; }
+            .profile-text { font-size: 0.75rem; }
+            .study-item h3 { font-size: 0.78rem; }
+            .tools-item h3 { font-size: 0.78rem; }
+            .projets-list li { font-size: 0.75rem; }
+            .interets li { font-size: 0.72rem; }
+            .qr-code-right { width: 55px; height: 55px; }
+            .qr-label-right { font-size: 0.45rem; }
+        }
+
+        /* ============================================
+           IMPRESSION 1 PAGE A4
+           ============================================ */
+        @media print {
+            body {
+                background: white;
+                padding: 0 !important;
+                margin: 0 !important;
+                display: block;
+                font-size: 11.5px !important;
+            }
+
+            .cv {
+                max-width: 100%;
+                border-radius: 0;
+                box-shadow: none;
+                margin: 0;
+                padding: 12px 8px !important;
+                display: grid;
+                grid-template-columns: 270px 1fr;
+            }
+                 .projets-list li .projet-desc{
+                    font-size: 1.4px !important;
+                 }
+
+            .sidebar { padding: 18px 14px !important; }
+            .content { padding: 18px 24px 18px 20px !important; }
+
+            .pdp {
+                width: 150px !important;
+                height: 200px !important;
+                border-radius: 14px !important;
+                border: none !important;
+            }
+
+            .nom h1 { font-size: 1.4rem !important; }
+            .nom .titre { font-size: 0.75rem !important; }
+            .contact-side p { font-size: 0.7rem !important; }
+            .section-side h2 { font-size: 0.6rem !important; }
+            .skill-list-side li { font-size: 0.65rem !important; }
+            .sub-skill-title { font-size: 0.55rem !important; }
+            .qualites-list li { font-size: 0.65rem !important; }
+            .langue-table { font-size: 0.65rem !important; }
+            .langue-table td { padding: 3px 0 !important; }
+            .content h2 { font-size: 0.65rem !important; }
+            .profile-text { font-size: 0.75rem !important; }
+            .study-item .year { font-size: 0.55rem !important; }
+            .study-item h3 { font-size: 0.78rem !important; }
+            .study-item .place { font-size: 0.65rem !important; }
+            .tools-item h3 { font-size: 0.78rem !important; }
+            .tools-item p { font-size: 0.65rem !important; }
+            .tools-list li { font-size: 0.7rem !important; }
+            .projets-list li { font-size: 0.7rem !important; }
+            .projets-list li .projet-desc { font-size: 0.62rem !important; }
+            .reseau-item h4 { font-size: 0.8rem !important; }
+            .reseau-item p { font-size: 0.7rem !important; }
+            .interets li { font-size: 0.8rem !important; }
+
+            /* ✅ TSY MIDINA AMBANY NY QR CODE */
+            .interets-wrapper {
+                display: flex !important;
+                align-items: center !important;
+                gap: 20px !important;
+                flex-direction: row !important;
+            }
+            .qr-container-right {
+                flex-shrink: 0 !important;
+                align-self: center !important;
+            }
+            .qr-code-right {
+                width: 100px !important;
+                height: 100px !important;
+            }
+            .qr-label-right {
+                font-size: 0.6rem !important;
+            }
+
+            .section { page-break-inside: avoid; }
+            .study-item { page-break-inside: avoid; }
+            .tools-item { page-break-inside: avoid; }
+            .cv { page-break-after: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cv">
+
+        <!-- ===== SIDEBAR GAUCHE ===== -->
+        <div class="sidebar">
+
+            <!-- PHOTO -->
+            <div class="photo-container">
+                <img src="../image/me.png" class="pdp" alt="Photo de MIARINDRANTO Diarizo Alinjaka">
+            </div>
+
+            <!-- NOM -->
+            <div class="nom">
+                <h1>MIARINDRANTO <span>Diarizo Alinjaka</span></h1>
+                <div class="titre"><i class="fas fa-code" style="margin-right:4px;"></i> Développeur Full-Stack</div>
+            </div>
+
+            <!-- CONTACT -->
+            <div class="contact-side">
+                <p><i class="fas fa-phone-alt icon"></i> 038 11 697 75</p>
+                <p><i class="fas fa-envelope icon"></i> <a href="mailto:miarindrantodiarizoalinjaka@gmail.com">miarindrantodiarizoalinjaka@gmail.com</a></p>
+                <p><i class="fas fa-map-marker-alt icon"></i> Antananarivo</p>
+                <p><i class="fab fa-linkedin-in icon"></i> <a href="">linkedin.com/in/diarizo-alin-484a4241b/</a></p>
+                <p><i class="fab fa-github-alt icon"></i> <a href="#">github.com/dairybradlee-star</a></p>
+            </div>
+
+            <!-- ===== COMPÉTENCES ===== -->
+            <div class="section-side">
+                <h2>Compétences</h2>
+
+                <div class="sub-skill-title"><i class="fas fa-globe" style="margin-right:4px;"></i> Développement Web</div>
+                <ul class="skill-list-side">
+                    <li>HTML5 / CSS3</li>
+                    <li>JavaScript (ES6)</li>
+                    <li>PHP</li>
+                    <li>Node.js</li>
+                </ul>
+
+                <div class="sub-skill-title"><i class="fas fa-database" style="margin-right:4px;"></i> Base de données</div>
+                <ul class="skill-list-side">
+                    <li>MySQL</li>
+                    <li>SQLite3</li>
+                    <li>PostgreSQL</li>
+                </ul>
+
+                <div class="sub-skill-title"><i class="fas fa-terminal" style="margin-right:4px;"></i> Programmation</div>
+                <ul class="skill-list-side">
+                    <li>Python</li>
+                    <li>Langage C</li>
+                    <li>C#</li>
+                </ul>
+            </div>
+
+            <!-- ===== QUALITÉS ===== -->
+            <div class="section-side">
+                <h2>Qualités</h2>
+                <ul class="qualites-list">
+                    <li>Curieux et autonome</li>
+                    <li>Esprit d'équipe</li>
+                    <li>Gestion du stress</li>
+                </ul>
+            </div>
+
+            <!-- ===== LANGUES ===== -->
+            <div class="section-side">
+                <h2>Langues</h2>
+                <table class="langue-table">
+                    <tr><td>Malagasy</td><td>Maternelle</td></tr>
+                    <tr><td>Français</td><td>Intermédiaire</td></tr>
+                    <tr><td>Anglais</td><td>Notions</td></tr>
+                </table>
+            </div>
+
+        </div>
+
+        <!-- ===== CONTENU DROITE ===== -->
+        <div class="content">
+
+            <!-- ===== PROFIL ===== -->
+            <h2><i class="fas fa-user icon"></i> Profil</h2>
+            <div class="profile-text">
+                Étudiant en Licence 2 Informatique à l'EMIT Fianarantsoa, passionné par le développement web,
+                les bases de données et les réseaux informatiques. Curieux, autonome et motivé,
+                je souhaite mettre en pratique mes connaissances à travers un stage afin de développer
+                davantage mes compétences techniques et professionnelles.
+            </div><br>
+
+            <!-- ===== FORMATION ===== -->
+            <h2><i class="fas fa-graduation-cap icon"></i> Formation</h2>
+
+            <div class="study-item">
+                <div class="year">2025 - 2026 (En cours)</div>
+                <h3>Licence 2 Informatique</h3>
+                <div class="place">EMIT Fianarantsoa</div>
+            </div>
+
+            <div class="study-item">
+                <div class="year">2024 - 2025</div>
+                <h3>Licence 1 Informatique</h3>
+                <div class="place">EMIT Fianarantsoa</div>
+            </div>
+
+            <div class="study-item">
+                <div class="year">2024</div>
+                <h3>Baccalauréat Série S</h3>
+                <div class="place">Lycée Andoharanofotsy</div>
+            </div><br>
+
+            <!-- ===== SYSTÈMES & OUTILS ===== -->
+            <h2><i class="fas fa-tools icon"></i> Systèmes & Outils</h2>
+
+            <div class="tools-item">
+                <h3><i class="fab fa-git-alt icon"></i> Git & GitHub</h3>
+                <p>Gestion de versions et collaboration</p>
+            </div>
+
+            <ul class="tools-list">
+                <li><strong>Linux</strong> — Commandes de base, administration, configuration réseau</li>
+                <li><strong>Windows</strong> — Environnement de développement et administration</li>
+            </ul><br>
+
+            <!-- ===== RÉSEAU ===== -->
+          
+
+            <div class="reseau-item">
+                <h4><i class="fas fa-layer-group icon"></i> Connaissances réseau</h4>
+                <p>Modèle OSI, TCP/IP, IPv4, Subnetting (VLSM), Routeurs, Switches, Cisco Packet Tracer, Wireshark</p>
+            </div><br>
+
+            <!-- ===== PROJETS ===== -->
+            <h2><i class="fas fa-project-diagram icon"></i> Projets</h2>
+
+            <ul class="projets-list">
+                <li>
+                    <strong>Hotel Savoureux</strong>
+                    <span class="projet-desc">Site web de réservation d'hôtel avec gestion des chambres, clients et réservations.</span>
+                </li>
+                <li>
+                    <strong>Gestion de vente panneaux solaires</strong>
+                    <span class="projet-desc">Application de gestion de vente développée en C# avec base de données.</span>
+                </li>
+                <li>
+                    <strong>Site Web Personnel</strong>
+                    <span class="projet-desc">Développement d'un site responsive en HTML, CSS et JavaScript.</span>
+                </li>
+                <li>
+                    <strong>Jeu de l'Oie (Python)</strong>
+                    <span class="projet-desc">Conception d'un jeu avec interface graphique Tkinter.</span>
+                </li>
+            </ul><br>
+
+            <!-- ===== CENTRES D'INTÉRÊT + QR CODE ===== -->
+            <h2><i class="fas fa-heart icon"></i> Centres d'intérêt</h2>
+
+            <div class="interets-wrapper">
+                <ul class="interets">
+                    <li><i class="fas fa-fist-raised icon"></i> Taekwondo</li>
+                    <li><i class="fas fa-film icon"></i> Cinéma</li>
+                    <li><i class="fas fa-laptop-code icon"></i> Développement Web</li>
+                    <li><i class="fas fa-user-secret icon"></i> Hacking éthique</li>
+                </ul>
+
+                <div class="qr-container-right">
+                    <p class="qr-label-right">📱 Scannez pour voir mon portfolio</p>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://github.com/tonprofil" 
+                         alt="QR Code vers mon portfolio GitHub" 
+                         class="qr-code-right">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
